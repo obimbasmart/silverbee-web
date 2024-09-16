@@ -1,6 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import { toCurrency } from "@/utils";
 import Link from "next/link";
+import Love from "../icons/Love";
+import { useState } from "react";
 
 export interface ProductItemProps {
     name: string;
@@ -10,8 +14,15 @@ export interface ProductItemProps {
 }
 
 function ProductItem({ name, price, discount, img }: ProductItemProps) {
+    const [liked, setLiked] = useState(false);
+
+    const handleLiked = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+        setLiked(!liked);
+    };
+
     return (
-        <Link className="w-[43%]" href="/products/1">
+        <Link className="relative h-auto max-w-full" href="/products/1">
             <div className="w-full relative aspect-[0.95]">
                 <Image
                     src={img}
@@ -35,6 +46,16 @@ function ProductItem({ name, price, discount, img }: ProductItemProps) {
                     <p className="font-medium">{toCurrency(price)}</p>
                 </div>
             </div>
+
+            <button
+                onClick={handleLiked}
+                className="z-40 bg-white absolute top-0 right-0 w-8 h-8 border-[1px] border-hint  rounded-full flex items-center justify-center"
+            >
+                <Love
+                    strokeColor={liked ? `red` : "#2C3333"}
+                    fill={liked ? "red" : "none"}
+                />
+            </button>
         </Link>
     );
 }

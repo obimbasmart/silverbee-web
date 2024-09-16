@@ -1,12 +1,15 @@
-import React from "react";
 import BreadCrumbs from "@/components/shared/BreadCrumbs";
-import { PRODUCT_DATA } from "@/dummy";
+import { PRODUCT_DATA, REVIEW_DATA } from "@/dummy";
 import { toCurrency } from "@/utils";
 import StarGroup from "@/components/shared/StarGroup";
 import Icon from "@/components/shared/Icon";
 import ProductCarousel from "@/components/product/ProductCarousel";
 import { TypeMetadataGroup } from "@/components/shared/TypeMetadata";
 import Button from "@/components/shared/Button";
+import ReviewItem from "@/components/shared/ReviewItem";
+import ArrowRight from "@/components/icons/ArrowRight";
+import Feature from "@/components/product/Feature";
+import ProductGroup from "@/components/shared/ProductGroup";
 
 const slides = [
     {
@@ -44,7 +47,6 @@ const ProductInfo = ({ params }: any) => {
             <div className="py-2">
                 <BreadCrumbs />
             </div>
-
             <section>
                 <div className="space-y-3">
                     <div className="flex flex-row items-center justify-between">
@@ -59,7 +61,10 @@ const ProductInfo = ({ params }: any) => {
                         </div>
                     </div>
                     <div className="flex flex-row items-center justify-between">
-                        <StarGroup averageRating={3} />
+                        <div className="flex flex-row items-center justify-center space-x-2 font-medium text-sm">
+                            <StarGroup averageRating={3} />
+                            <p>(9)</p>
+                        </div>
                         <div className="flex flex-row space-x-2">
                             <Icon name="love" />
                             <Icon name="share" />
@@ -67,12 +72,10 @@ const ProductInfo = ({ params }: any) => {
                     </div>
                 </div>
             </section>
-
-            <section className="w-full h-[426px] mx-auto mt-4">
+            <section className="w-full h-[426px] mx-auto mt-4 mb-8">
                 <ProductCarousel slides={slides} />
             </section>
-
-            <section className="space-y-3">
+            <section className="space-y-3 py-2">
                 <TypeMetadataGroup
                     groupName="Colors"
                     types={[
@@ -98,13 +101,11 @@ const ProductInfo = ({ params }: any) => {
                     ]}
                 />
             </section>
-
             <Button
                 title="Add to cart"
                 containerStyles="bg-primary my-4"
                 textStyles="text-white"
             />
-
             <section className="space-y-2">
                 <h4 className="text-base font-medium space-y-2">
                     Item description
@@ -123,7 +124,6 @@ const ProductInfo = ({ params }: any) => {
                 <ItemDescription attr="App" value={`oraimo health`} />
                 <ItemDescription attr="Heart rate" value={`Blood Oxygen`} />
             </section>
-
             <div className="my-6 space-y-2">
                 <h4 className="text-base font-medium">Need help ?</h4>
                 <Button
@@ -149,30 +149,75 @@ const ProductInfo = ({ params }: any) => {
                     }
                 />
             </div>
+            <section>
+                <h4 className="text-base font-medium space-y-2 mb-2">
+                    Delivery and returns
+                </h4>
+                <div className="text-sm space-y-2">
+                    <p className="text-base font-medium flex flex-row gap-x-3 items-center">
+                        <Icon name="truck" />
+                        <span className="text-sm font-medium">
+                            Delievery & returns
+                        </span>
+                    </p>
 
-            <section className="text-sm space-y-2">
-                <p className="text-base font-medium flex flex-row gap-x-3 items-center">
-                    <Icon name="truck" />
-                    <span className="text-base font-medium">
-                        Delievery & returns
-                    </span>
-                </p>
+                    <p className="leading-7">
+                        Your order will be delivered within 5 days of purchase.
+                        Delivery fees vary based on your location and the items
+                        you’ve selected.
+                    </p>
+                </div>
 
-                <p className="leading-7">
-                    Your order will be delivered within 5 days of purchase.
-                    Delivery fees vary based on your location and the items
-                    you’ve selected.
-                </p>
+                <div className="text-sm space-y-2 mt-3">
+                    <p className="text-base font-medium flex flex-row gap-x-3 items-center">
+                        <Icon name="ArrowCounterClockwise" />
+                        <span className="text-sm font-medium">
+                            Return Policy
+                        </span>
+                    </p>
+
+                    <p className="leading-7">Eligible for return</p>
+                </div>
+            </section>
+            <section>
+                <h4 className="text-base font-medium space-y-2 mt-6">
+                    Reviews
+                </h4>
+                <div className="divide-y-[1px] divide-y-gray-hint flex flex-col gap-y-3">
+                    {REVIEW_DATA.slice(2, 4).map((item) => (
+                        <ReviewItem
+                            key={item.review}
+                            rating={item.rating}
+                            username={item.username}
+                            created_ate={item.created_ate}
+                            review={item.review}
+                        />
+                    ))}
+                </div>
+
+                <div className="flex items-center justify-center px-5 py-3">
+                    <Button
+                        title="See all reviews"
+                        icon={<ArrowRight color="#0E84E5" />}
+                        containerStyles="justify-center items-center"
+                    />
+                </div>
+            </section>
+            <section className="flex flex-row items-center justify-center">
+                <Feature icon={"hand"} title="Product Quality" />
+                <Feature icon={"call"} title="24/7 Customer Support" />
+                <Feature icon={"payment"} title="Secure Payment" />
             </section>
 
-            <section className="text-sm space-y-2 mt-3">
-                <p className="text-base font-medium flex flex-row gap-x-3 items-center">
-                    <Icon name="ArrowCounterClockwise" />
-                    <span className="text-base font-medium">Return Policy</span>
-                </p>
-
-                <p className="leading-7">Eligible for return</p>
+            <section className="mt-6">
+                <h4 className="text-base font-medium space-y-2">
+                    Similar products
+                </h4>
+                <ProductGroup data={PRODUCT_DATA.slice(0, 4)} />
             </section>
+
+
+            
         </main>
     );
 };

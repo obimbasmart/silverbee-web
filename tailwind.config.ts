@@ -15,13 +15,14 @@ const config: Config = {
         foreground: "var(--foreground)",
         primary: "#0E84E5",
         secondary: '#F0F7FF',
+        notify: '#ff3636',
         dark: {
           700: '#2C3333',
           800: '#20262E'
         },
         hints: '#767A7A',
         gray: {
-          hint: '#E9E9EA'
+          hint: '#E9E9EA' 
         }
       },
       fontFamily: {

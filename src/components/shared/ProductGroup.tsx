@@ -8,7 +8,7 @@ interface ProductGroupProps {
 
 function ProductGroup({data}: ProductGroupProps) {
   return (
-    <section className='flex flex-row flex-wrap  gap-y-5 justify-evenly py-3'>
+    <section className='grid grid-cols-2 md:grid-cols-3 gap-4'>
             {
                 data.map((item) => (
                     <ProductItem 

@@ -19,11 +19,11 @@ function ProductCarousel({ slides }) {
                 />
             </div>
 
-            <div className="flex flex-row items-center  justify-center space-x-2 overflow-x-auto">
+            <div className="grid grid-cols-4 gap-2">
                 {slides.map((slide, index) => (
                     <div
                         key={slide.id}
-                        className={`relative w-[50px] h-[50px] cursor-pointer ${
+                        className={`relative w-full aspect-square cursor-pointer ${
                             index === currentIndex
                                 ? "border-b-primary   border-b-2"
                                 : ""
@@ -35,7 +35,7 @@ function ProductCarousel({ slides }) {
                             alt={slide.alt || `Thumbnail ${index + 1}`}
                             layout="fill"
                             objectFit="cover"
-                            className="rounded-lg"
+                            className="rounded-md"
                         />
                     </div>
                 ))}

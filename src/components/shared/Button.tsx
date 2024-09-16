@@ -15,11 +15,13 @@ function Button({
     return (
         <button
             onClick={onClick}
-            className={`flex flex-row items-center justify-center px-6 py-3 text-primary space-x-2 rounded-lg ${containerStyles}`}
+            className={`flex flex-row items-center justify-center px-6 py-3 text-primary space-x-2 rounded-md ${containerStyles}`}
         >
-            <p className={`text-primary text-sm font-medium ${textStyles}`}>
-                {title}
-            </p>
+            {title && (
+                <p className={`text-primary text-sm font-medium ${textStyles}`}>
+                    {title}
+                </p>
+            )}
             {icon}
         </button>
     );

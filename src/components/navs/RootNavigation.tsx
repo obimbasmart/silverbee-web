@@ -1,13 +1,11 @@
 "use client";
 
-import { CATEGORIES } from "@/constants";
+import { CATEGORIES, PROFILE_LINKS } from "@/constants";
 import { Drawer, Modal } from "flowbite-react";
 import Link from "next/link";
 import { useState } from "react";
 import Icon from "../shared/Icon";
 import Category from "./CategoryLinks";
-import { PROFILE_LINKS } from "@/constants";
-import { Londrina_Sketch } from "next/font/google";
 
 export function RootNavigation() {
     const [isOpen, setIsOpen] = useState(false);
@@ -16,13 +14,29 @@ export function RootNavigation() {
     const handleClose = () => setIsOpen(false);
     const hanldeOpen = () => setIsOpen(true);
 
-    const handleModalClose = () => setOpenModal(false);
+    // const handleModalClose = () => setOpenModal(false);
     const handleModalOpen = () => setOpenModal(true);
 
     return (
         <nav className="bg-white border-gray-200 dark:bg-gray-900 px-4 py-2">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto">
                 <div className="flex flex-row space-x-5 justify-center items-center">
+                    <Link href="/" className="mb-[2px]">
+                        <Icon name="logo" width={24} height={24} />
+                    </Link>
+                </div>
+
+                <div className="flex flex-row items-center justify-center space-x-5">
+                    <Link href={"/products"}>
+                        <Icon name="search" width={24} height={24} />
+                    </Link>
+                    <button onClick={handleModalOpen}>
+                        <Icon name="user" width={24} height={24} />
+                    </button>
+                    <Link href="/cart" className="relative">
+                        <Icon name="cart" width={24} height={24} />
+                        <span className="-top-1  -right-2.5 bg-notify w-5 font-medium text-xs h-5 rounded-full text-white inline-flex items-center justify-center absolute">2</span>
+                    </Link>
                     <button
                         onClick={hanldeOpen}
                         data-collapse-toggle="navbar-default"
@@ -39,19 +53,6 @@ export function RootNavigation() {
                             alt="Menu Icon"
                         />
                     </button>
-                    <a href="/" className="mb-[2px]">
-                        <Icon name="logo" width={24} height={24} />
-                    </a>
-                </div>
-
-                <div className="flex flex-row items-center justify-center space-x-5">
-                    <Link href={"/products"}>
-                        <Icon name="search" width={24} height={24} />
-                    </Link>
-                    <button onClick={handleModalOpen}>
-                        <Icon name="user" width={24} height={24} />
-                    </button>
-                    <Icon name="cart" width={24} height={24} />
                 </div>
 
                 <Drawer open={isOpen} onClose={handleClose}>

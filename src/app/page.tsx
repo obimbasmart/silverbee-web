@@ -36,7 +36,9 @@ export default function Home() {
 
             {/* <Hero bgImage="oraimo.png" /> */}
 
-            <ProductGroup data={PRODUCT_DATA.slice(0, 6)} />
+            <section className="px-4">
+                <ProductGroup data={PRODUCT_DATA.slice(0, 6)} />
+            </section>
 
             <PromotionCard
                 bgImage="promo_01"
